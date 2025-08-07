@@ -1,0 +1,52 @@
+;==============================
+; Full Feature Test - MSP430
+;==============================
+
+.DEFINE VALUE1 0x12AB
+.EQU VALUE2 0x00FF
+.ASG 0xC000, RESET_VECTOR
+
+.sect .text
+.ORG 0xC000
+
+START:
+    MOV.W   #VALUE1, R5       ; Load VALUE1 into R5
+    MOV.W   #VALUE2, R6       ; Load VALUE2 into R6
+    CALL    #ADD_ROUTINE      ; Call macro-defined function
+    JMP     DONE              ; Jump to end
+
+;==============================
+; Macro for addition
+;==============================
+MACRO ADD_ROUTINE
+    ADD.W   R6, R5            ; R5 = R5 + R6
+    RET
+ENDM
+
+;==============================
+; Data Section
+;==============================
+.sect .data
+.ORG 0xD000
+
+DATA_LABEL:
+    .WORD   VALUE1
+    .BYTE   0x7F
+    .ASCII  "OK"
+    .STRINGZ "Test Passed"
+
+;==============================
+; Uninitialized Section (BSS)
+;==============================
+.sect .bss
+.ORG 0xE000
+
+TEMP_BUFFER:
+    .BYTE   0, 0, 0, 0        ; Reserve 4 bytes
+
+;==============================
+; End
+;==============================
+.sect .text
+DONE:
+    NOP                       ; End of program
