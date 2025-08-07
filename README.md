@@ -79,7 +79,8 @@ BUFFER:
     .BYTE 0, 0, 0, 0
 ````
 ---
-🖥 How to Run
+## 🖥 How to Run
+
 1. Install Python 3.8+ (with tkinter)
 2. Clone or download the project
 3. Run the GUI:
@@ -94,5 +95,11 @@ python interface.py
     - Symbol & literal tables
     - Memory content
     - Output files: output.hex, MSP430.obj
+---
 
+## 📸 Screenshot
+<p align="center">
+   <img src="https://github.com/elaa001/Portfolio/blob/main/assets/msp430.png?raw=true" width="100%"/>
+</p>
 
+---
